@@ -25,6 +25,28 @@ class ListBookShelf extends Component {
                 }
             ]
         };
+        let books = {
+            'books' : [
+                {
+                    'id' : 'nggnmAEACAAJ',
+                    'authors' : ['William E. Shotts, Jr.'],
+                    'imageLinks:' : {
+                        'smallThumbnail': 'http://books.google.com/books/content?id=nggnmAEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api',
+                        'thumbnail': 'http://books.google.com/books/content?id=nggnmAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api'
+                    },
+                    'title': 'The Linux Command Line'
+                },
+                {
+                    'id' : 'sJf1vQAACAAJ',
+                    'authors' : ['Harmeet Singh', 'Mehul Bhatt'],
+                    'imageLinks:' : {
+                        'smallThumbnail': 'http://books.google.com/books/content?id=sJf1vQAACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api',
+                        'thumbnail': 'http://books.google.com/books/content?id=sJf1vQAACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api'
+                    },
+                    'title': 'Learning Web Development with React and Bootstrap'
+                }
+            ]
+        }
         return(
             <div>
                 <div className="list-books">
@@ -35,7 +57,7 @@ class ListBookShelf extends Component {
                     <div>
                         {
                             bookShelfCategories.categories.map((categories) => (
-                                <BookShelf key={categories.id} categories={categories}/>
+                                <BookShelf key={categories.id} categories={categories} books={books} />
                             ))
                         }
                   

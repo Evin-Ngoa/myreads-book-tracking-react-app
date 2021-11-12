@@ -16,8 +16,10 @@ function Book(props){
                     </select>
                     </div>
                 </div>
-                <div className="book-title">The Adventures of Tom Sawyer</div>
-                <div className="book-authors">Mark Twain</div>
+                <div className="book-title"> {props.book.title}</div>
+                <div className="book-authors">
+                    Mark Twain
+                </div>
             </div>
         </>
     )

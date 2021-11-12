@@ -3,6 +3,7 @@ import Book from "./Book";
 
 function BookShelf(props){
     const categories = props.categories;
+    const books = props.books;
     return (
             <div>
                  <div className="bookshelf">
@@ -11,6 +12,12 @@ function BookShelf(props){
                             <ol className="books-grid">
                                 <li>
                                     {/* <Book book={book} /> */}
+                                    {
+                                        books.books.map((book) => (
+                                            // <BookShelf key={categories.id} categories={categories} books={books} />
+                                            <Book key={book.id} book={book} /> 
+                                        ))
+                                    }
                                 </li>
                                 <li>
                                     <div className="book">
