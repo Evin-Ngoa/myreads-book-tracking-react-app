@@ -32,12 +32,6 @@ class BooksApp extends React.Component {
     console.log("books render", this.state.books.length);
     return (
       <div className="app">
-        {/* {this.state.showSearchPage ? (
-            <SearchBooks onPageChange={this.handleSearchChange} />
-        ) : (
-            <ListBookShelf books={this.state.books} onPageChange={this.handleHomeChange} />
-        )} */}
-
         <Routes>
             <Route path="/search" 
                 element = {
