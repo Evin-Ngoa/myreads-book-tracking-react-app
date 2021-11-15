@@ -6,7 +6,7 @@ function Book(props){
             <li>
                 <div className="book">
                     <div className="book-top">
-                        <div className="book-cover" style={{ width: 128, height: 192, backgroundImage: 'url("http://books.google.com/books/content?id=32haAAAAMAAJ&printsec=frontcover&img=1&zoom=1&imgtk=AFLRE72yckZ5f5bDFVIf7BGPbjA0KYYtlQ__nWB-hI_YZmZ-fScYwFy4O_fWOcPwf-pgv3pPQNJP_sT5J_xOUciD8WaKmevh1rUR-1jk7g1aCD_KeJaOpjVu0cm_11BBIUXdxbFkVMdi&source=gbs_api")' }}></div>
+                        <div className="book-cover" style={{ width: 128, height: 192, backgroundImage: `url(${props.book.imageLinks.thumbnail})` }}></div>
                         <div className="book-shelf-changer">
                         <select>
                             <option value="move" disabled>Move to...</option>
@@ -17,9 +17,11 @@ function Book(props){
                         </select>
                         </div>
                     </div>
-                    <div className="book-title"> {props.book.title}</div>
+                    <div className="book-title"> {props.book.title} ({props.book.shelf})</div>
                     <div className="book-authors">
-                        Mark Twain
+                        {props.book.authors.map((author) => (
+                            <span> {author} <br/> </span>
+                        ))}
                     </div>
                 </div>
             </li>

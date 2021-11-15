@@ -4,6 +4,7 @@ import Book from "./Book";
 function BookShelf(props){
     const categories = props.categories;
     const books = props.books;
+    console.log("books in BookShelf", books);
     return (
             <div>
                  <div className="bookshelf">
@@ -13,7 +14,7 @@ function BookShelf(props){
                                 
                                 {/* <Book book={book} /> */}
                                 {
-                                    books.books.map((book) => (
+                                    books.map((book) => (
                                         // <BookShelf key={categories.id} categories={categories} books={books} />
                                         <Book key={book.id} book={book} /> 
                                     ))

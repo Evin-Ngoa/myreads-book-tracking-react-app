@@ -19,13 +19,17 @@ class BooksApp extends React.Component {
 
   componentDidMount(){
         BooksAPI.getAll().then((books) => {
+            console.log("books componentDidMount", books);
             this.setState({ books : books })
         })
 
-        BooksAPI.get("nggnmAEACAAJ")
+        // BooksAPI.get("nggnmAEACAAJ")
+
+        console.log("books", this.state.books);
   }
 
   render() {
+    console.log("books render", this.state.books.length);
     return (
       <div className="app">
         {/* {this.state.showSearchPage ? (

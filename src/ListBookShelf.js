@@ -7,7 +7,7 @@ class ListBookShelf extends Component {
     render(){
 
         // destructuring assignment
-        const {  } = this.props;
+        const { books } = this.props;
 
         let bookShelfCategories = {
             'categories' :[
@@ -25,28 +25,7 @@ class ListBookShelf extends Component {
                 }
             ]
         };
-        let books = {
-            'books' : [
-                {
-                    'id' : 'nggnmAEACAAJ',
-                    'authors' : ['William E. Shotts, Jr.'],
-                    'imageLinks:' : {
-                        'smallThumbnail': 'http://books.google.com/books/content?id=nggnmAEACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api',
-                        'thumbnail': 'http://books.google.com/books/content?id=nggnmAEACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api'
-                    },
-                    'title': 'The Linux Command Line'
-                },
-                {
-                    'id' : 'sJf1vQAACAAJ',
-                    'authors' : ['Harmeet Singh', 'Mehul Bhatt'],
-                    'imageLinks:' : {
-                        'smallThumbnail': 'http://books.google.com/books/content?id=sJf1vQAACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api',
-                        'thumbnail': 'http://books.google.com/books/content?id=sJf1vQAACAAJ&printsec=frontcover&img=1&zoom=5&source=gbs_api'
-                    },
-                    'title': 'Learning Web Development with React and Bootstrap'
-                }
-            ]
-        }
+        console.log("books in ListBookShelf", books);
         return(
             <div>
                 <div className="list-books">
@@ -55,11 +34,13 @@ class ListBookShelf extends Component {
                     </div>
                     <div className="list-books-content">
                     <div>
-                        {
+                        {/* On 1st Load, the books will be empty but when DidMount the api will have data and render 2nd atmt */}
+                        {books.length === 0 || 
+                            (
                             bookShelfCategories.categories.map((categories) => (
                                 <BookShelf key={categories.id} categories={categories} books={books} />
                             ))
-                        }
+                        )}
                   
                         <div className="bookshelf">
                         <h2 className="bookshelf-title">Currently Reading</h2>
