@@ -1,13 +1,13 @@
 import React, {Component} from "react";
 import BookShelf from "./components/BookShelf";
- 
+import { Link } from "react-router-dom";
 class ListBookShelf extends Component {
    
   
     render(){
 
         // destructuring assignment
-        const { onPageChange } = this.props;
+        const {  } = this.props;
 
         let bookShelfCategories = {
             'categories' :[
@@ -211,7 +211,9 @@ class ListBookShelf extends Component {
                     </div>
                     </div>
                     <div className="open-search">
-                        <button onClick={() => onPageChange()}>Add a book</button>
+                        <Link to="/search">
+                            <button >Add a book</button>
+                        </Link>
                     </div>
                 </div>
             </div>
