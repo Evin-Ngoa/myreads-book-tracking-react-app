@@ -8,7 +8,7 @@ class ListBookShelf extends Component {
     render(){
 
         // destructuring assignment
-        const { books } = this.props;
+        const { books, onBookShelfChange } = this.props;
 
         let bookShelfCategories = {
             'categories' :[
@@ -64,7 +64,7 @@ class ListBookShelf extends Component {
                                     {
                                         currentlyReading.map((book) => (
                                             // <BookShelf key={categories.id} categories={categories} books={books} />
-                                            <Book key={book.id} book={book} /> 
+                                            <Book key={book.id} book={book} onBookShelfChange={onBookShelfChange} /> 
                                         ))
                                     }
                                 </ol>

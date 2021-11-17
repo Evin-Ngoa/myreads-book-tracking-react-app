@@ -23,9 +23,17 @@ class BooksApp extends React.Component {
             this.setState({ books : books })
         })
 
-        // BooksAPI.get("nggnmAEACAAJ")
-
         console.log("books", this.state.books);
+  }
+
+  handleBookShelfChange = (book, shelf) => {
+    BooksAPI.update(book, shelf).then((book) => {
+        this.setState(state => ({
+            books : state.books.concat([book])
+        }))
+    })
+
+    console.log("book : shelf ", book, shelf)
   }
 
   render() {
@@ -40,7 +48,7 @@ class BooksApp extends React.Component {
             />
             <Route path="/" 
                 element = {
-                    <ListBookShelf books={this.state.books} />
+                    <ListBookShelf books={this.state.books} onBookShelfChange = {this.handleBookShelfChange}/>
                 }
             />
         </Routes>
