@@ -19,17 +19,17 @@ class BooksApp extends React.Component {
 
   componentDidMount(){
         BooksAPI.getAll().then((books) => {
-            console.log("books componentDidMount", books);
+            // console.log("books componentDidMount", books);
             this.setState({ books : books })
         })
 
-        console.log("books", this.state.books);
+        // console.log("books", this.state.books);
   }
 
   handleBookMovement = (book, shelf) => {
     // Send request to Book Update
     BooksAPI.update(book, shelf).then((bookdata) => {
-        console.log("bookdata", bookdata)
+        // console.log("bookdata", bookdata)
     })
 
     // Update current book Object
@@ -41,7 +41,7 @@ class BooksApp extends React.Component {
   }
 
   render() {
-    console.log("books render", this.state.books.length);
+    // console.log("books render", this.state.books.length);
     return (
       <div className="app">
         <Routes>
