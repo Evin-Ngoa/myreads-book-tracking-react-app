@@ -26,14 +26,18 @@ class BooksApp extends React.Component {
         console.log("books", this.state.books);
   }
 
-  handleBookShelfChange = (book, shelf) => {
-    BooksAPI.update(book, shelf).then((book) => {
-        this.setState(state => ({
-            books : state.books.concat([book])
-        }))
+  handleBookMovement = (book, shelf) => {
+    // Send request to Book Update
+    BooksAPI.update(book, shelf).then((bookdata) => {
+        console.log("bookdata", bookdata)
     })
 
-    console.log("book : shelf ", book, shelf)
+    // Update current book Object
+    book.shelf = shelf;
+    this.setState(state => ({
+        // Remove the book and concatenate to the new one
+        books : state.books.filter(bk => bk.id !== book.id).concat(book)
+    }))
   }
 
   render() {
@@ -48,7 +52,7 @@ class BooksApp extends React.Component {
             />
             <Route path="/" 
                 element = {
-                    <ListBookShelf books={this.state.books} onBookShelfChange = {this.handleBookShelfChange}/>
+                    <ListBookShelf books={this.state.books} onBookShelfChange = {this.handleBookMovement}/>
                 }
             />
         </Routes>

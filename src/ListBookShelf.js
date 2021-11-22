@@ -40,6 +40,7 @@ class ListBookShelf extends Component {
         console.log("read",  read);
         console.log("currentlyReading",  currentlyReading);
         console.log("wantToRead",  wantToRead);
+        console.log("bookShelfCategories 1 ",  bookShelfCategories.categories[0].name);
 
         return(
             <div>
@@ -53,7 +54,7 @@ class ListBookShelf extends Component {
                         {/* {books.length === 0 || 
                             (
                             bookShelfCategories.categories.map((categories) => (
-                                <BookShelf key={categories.id} categories={categories} books={books} />
+                                <BookShelf key={categories.id} category={categories} books={books} />
                             ))
                         )} */}
                   
@@ -78,7 +79,7 @@ class ListBookShelf extends Component {
                                     {
                                         wantToRead.map((book) => (
                                             // <BookShelf key={categories.id} categories={categories} books={books} />
-                                            <Book key={book.id} book={book} /> 
+                                            <Book key={book.id} book={book} onBookShelfChange={onBookShelfChange} /> 
                                         ))
                                     }
                                 </ol>
@@ -91,7 +92,7 @@ class ListBookShelf extends Component {
                                 {
                                     read.map((book) => (
                                         // <BookShelf key={categories.id} categories={categories} books={books} />
-                                        <Book key={book.id} book={book} /> 
+                                        <Book key={book.id} book={book} onBookShelfChange={onBookShelfChange} /> 
                                     ))
                                 }
                                 </ol>
