@@ -36,14 +36,6 @@ class Book extends Component{
         book_value: ''
       }
 
-    // change = (val) => {
-    //     this.setState({
-    //         book_value : val
-    //     })
-
-    //     console.log("book_value", val)
-    // }
-
     render(){
 
         const { book, onBookShelfChange } = this.props
@@ -54,9 +46,8 @@ class Book extends Component{
                 <div className="book-top">
                     <div className="book-cover" style={{ width: 128, height: 192, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
                     <div className="book-shelf-changer">
-                    {/* <select onChange={(event) => this.change(event.target.value) } value={this.state.book_value}> */}
                     <select onChange={(event) => onBookShelfChange(book, event.target.value) } value={this.state.book_value}>
-                        <option value="move" disabled>Move to...</option>
+                        <option value="move" selected>Move to...</option>
                         <option value="currentlyReading" >Currently Reading</option>
                         <option value="wantToRead">Want to Read</option>
                         <option value="read">Read</option>

@@ -1,10 +1,8 @@
 import React, {Component} from "react";
 import BookShelf from "./components/BookShelf";
 import { Link } from "react-router-dom";
-import Book from "./components/Book";
 class ListBookShelf extends Component {
-   
-  
+     
     render(){
 
         // destructuring assignment
@@ -29,7 +27,7 @@ class ListBookShelf extends Component {
                 }
             ]
         };
-        console.log("books in ListBookShelf", books);
+        // console.log("books in ListBookShelf", books);
 
         let read = "read", currentlyReading = "currentlyReading", wantToRead = "wantToRead";
 
@@ -37,10 +35,10 @@ class ListBookShelf extends Component {
         currentlyReading = books.filter((book) => currentlyReading.match(book.shelf))
         wantToRead = books.filter((book) => wantToRead.match(book.shelf))
 
-        console.log("read",  read);
-        console.log("currentlyReading",  currentlyReading);
-        console.log("wantToRead",  wantToRead);
-        console.log("bookShelfCategories 1 ",  bookShelfCategories.categories[0].name);
+        // console.log("read",  read);
+        // console.log("currentlyReading",  currentlyReading);
+        // console.log("wantToRead",  wantToRead);
+        // console.log("bookShelfCategories 1 ",  bookShelfCategories.categories[0].name);
 
         return(
             <div>
@@ -49,56 +47,21 @@ class ListBookShelf extends Component {
                         <h1>MyReads</h1>
                     </div>
                     <div className="list-books-content">
-                    <div>
-                        {/* On 1st Load, the books will be empty but when DidMount the api will have data and render 2nd atmt */}
-                        {/* {books.length === 0 || 
-                            (
-                            bookShelfCategories.categories.map((categories) => (
-                                <BookShelf key={categories.id} category={categories} books={books} />
-                            ))
-                        )} */}
-                  
-                        <div className="bookshelf">
-                            <h2 className="bookshelf-title">Currently Reading</h2>
-                            <div className="bookshelf-books">
-                                <ol className="books-grid">
-                                    {
-                                        currentlyReading.map((book) => (
-                                            // <BookShelf key={categories.id} categories={categories} books={books} />
-                                            <Book key={book.id} book={book} onBookShelfChange={onBookShelfChange} /> 
-                                        ))
-                                    }
-                                </ol>
-                            </div>
-                        </div>
-                        <div className="bookshelf">
-                            <h2 className="bookshelf-title">Want to Read</h2>
-                            <div className="bookshelf-books">
-                                <ol className="books-grid">
-                
-                                    {
-                                        wantToRead.map((book) => (
-                                            // <BookShelf key={categories.id} categories={categories} books={books} />
-                                            <Book key={book.id} book={book} onBookShelfChange={onBookShelfChange} /> 
-                                        ))
-                                    }
-                                </ol>
-                            </div>
-                        </div>
-                        <div className="bookshelf">
-                            <h2 className="bookshelf-title">Read</h2>
-                            <div className="bookshelf-books">
-                                <ol className="books-grid">
-                                {
-                                    read.map((book) => (
-                                        // <BookShelf key={categories.id} categories={categories} books={books} />
-                                        <Book key={book.id} book={book} onBookShelfChange={onBookShelfChange} /> 
-                                    ))
-                                }
-                                </ol>
-                            </div>
-                        </div>
-                    </div>
+                        <BookShelf key={bookShelfCategories.categories[0].id} 
+                            shelf={bookShelfCategories.categories[0].name} 
+                            books={currentlyReading} 
+                            onBookShelfChange={onBookShelfChange} 
+                        />
+                        <BookShelf key={bookShelfCategories.categories[1].id} 
+                            shelf={bookShelfCategories.categories[1].name} 
+                            books={wantToRead} 
+                            onBookShelfChange={onBookShelfChange} 
+                        />
+                        <BookShelf key={bookShelfCategories.categories[2].id} 
+                            shelf={bookShelfCategories.categories[2].name} 
+                            books={read} 
+                            onBookShelfChange={onBookShelfChange} 
+                        />
                     </div>
                     <div className="open-search">
                         <Link to="/search">
