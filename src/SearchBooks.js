@@ -1,9 +1,28 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import Book from "./components/Book";
 class SearchBooks extends Component{
 
+    // initial State
+    state = {
+        query : ''
+    }
+
+    updateQuery = (text) => {
+
+        console.log(text)
+        this.setState({
+            query : text
+        })
+
+        this.props.onSearchBooks(this.state.query)
+    }
+
     render(){
-        const {  } = this.props
+        const { books, onBookShelfChange, hasBooks } = this.props
+        const { query } = this.state
+
+        let  isResults = false
 
         return(
             <>
@@ -23,12 +42,28 @@ class SearchBooks extends Component{
                             However, remember that the BooksAPI.search method DOES search by title or author. So, don't worry if
                             you don't find a specific author or title. Every search is limited by search terms.
                             */}
-                            <input type="text" placeholder="Search by title or author"/>
+                            <input type="text" placeholder="Search by title or author" value={query} onChange={(event) => this.updateQuery(event.target.value)}/>
 
                         </div>
                     </div>
                     <div className="search-books-results">
-                        <ol className="books-grid"></ol>
+                        <ol className="books-grid">
+                            {
+                                hasBooks
+                                ?
+                                books.length > 0 && (
+                                        books.map((bookObj) => (
+                                            // console.log("books map ", books);
+                                            <Book key={bookObj.id} book={bookObj} onBookShelfChange={onBookShelfChange} /> 
+                                        ))
+                                    
+                                )
+                                :
+                                <span> No Results </span>
+                                
+                                
+                            }
+                        </ol>
                     </div>
                 </div>
             </>

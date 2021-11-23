@@ -14,7 +14,9 @@ class BooksApp extends React.Component {
      * users can use the browser's back and forward buttons to navigate between
      * pages, as well as provide a good URL they can bookmark and share.
      */
-    books:[]
+    books:[],
+    queryBookResults:[],
+    hasBookResults: false
   }
 
   componentDidMount(){
@@ -39,20 +41,47 @@ class BooksApp extends React.Component {
         books : state.books.filter(bk => bk.id !== book.id).concat(book)
     }))
   }
+  
+  searchBooks = (query) => {
+
+    if(query){
+        BooksAPI.search(query.trim(), 20).then((response) => {
+
+            response.length > 0
+            ? this.setState({ queryBookResults: response, hasBookResults: true })
+            : this.setState({ queryBookResults: [], hasBookResults: false });
+
+            // console.log("queryBookResults", this.state.queryBookResults);
+        })
+    }else{
+        this.setState({ queryBookResults: [], hasBookResults: false })
+    }
+
+
+  }
 
   render() {
     // console.log("books render", this.state.books.length);
+    const { queryBookResults, hasBookResults } = this.state;
+
+    console.log("queryBookResults Render", queryBookResults);
+
     return (
       <div className="app">
         <Routes>
             <Route path="/search" 
                 element = {
-                    <SearchBooks  />
+                    <SearchBooks  
+                        onSearchBooks={this.searchBooks} 
+                        onBookShelfChange={this.handleBookMovement}
+                        books={queryBookResults} 
+                        hasBooks={hasBookResults} 
+                    />
                 }
             />
             <Route path="/" 
                 element = {
-                    <ListBookShelf books={this.state.books} onBookShelfChange = {this.handleBookMovement}/>
+                    <ListBookShelf books={this.state.books} onBookShelfChange={this.handleBookMovement}/>
                 }
             />
         </Routes>

@@ -39,7 +39,7 @@ class Book extends Component{
     render(){
 
         const { book, onBookShelfChange } = this.props
-
+        
         return(
         <li>
             <div className="book">
@@ -55,11 +55,22 @@ class Book extends Component{
                     </select>
                     </div>
                 </div>
-                <div className="book-title"> {book.title} ({book.shelf})</div>
+                <div className="book-title"> 
+                    {book.title} 
+                    {/* ({book.shelf}) */}
+                </div>
                 <div className="book-authors">
-                    {book.authors.map((author) => (
-                        <span key={author}> {author} <br/> </span>
-                    ))}
+                    {
+                        // Some books miss the authors property
+                        book.hasOwnProperty('authors')
+                        ?
+                            book.authors.length > 0 && (
+                                book.authors.map((author) => (
+                                    <span key={author}> {author} <br/> </span>
+                                ))
+                            )
+                        : <span> None </span> 
+                    }
                 </div>
             </div>
         </li>
