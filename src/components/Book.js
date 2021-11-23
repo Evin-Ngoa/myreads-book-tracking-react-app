@@ -39,12 +39,19 @@ class Book extends Component{
     render(){
 
         const { book, onBookShelfChange } = this.props
-        
+
         return(
         <li>
             <div className="book">
                 <div className="book-top">
-                    <div className="book-cover" style={{ width: 128, height: 192, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
+                    {
+                         book.hasOwnProperty('imageLinks') && book.imageLinks.hasOwnProperty('thumbnail')
+                         ?
+                        <div className="book-cover" style={{ width: 128, height: 192, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
+                        :
+                        <div className="book-cover" style={{ width: 128, height: 192, backgroundImage: `url()` }}></div>
+                        
+                    }
                     <div className="book-shelf-changer">
                     <select onChange={(event) => onBookShelfChange(book, event.target.value) } value={this.state.book_value}>
                         <option value="move">Move to...</option>
