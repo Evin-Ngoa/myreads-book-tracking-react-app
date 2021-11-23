@@ -55,6 +55,7 @@ class BooksApp extends React.Component {
         })
     }else{
         this.setState({ queryBookResults: [], hasBookResults: false })
+        console.log('Set Empty String')
     }
 
 

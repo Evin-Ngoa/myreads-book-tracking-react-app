@@ -10,12 +10,12 @@ class SearchBooks extends Component{
 
     updateQuery = (text) => {
 
-        console.log(text)
+        console.log("text", text)
         this.setState({
             query : text
         })
 
-        this.props.onSearchBooks(this.state.query)
+        this.props.onSearchBooks(text)
     }
 
     render(){
